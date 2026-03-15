@@ -6,6 +6,8 @@
 
 ## 1. Khi tạo màn hình mới
 
+**Tạo nhánh**: `screen/<tên-màn>`
+
 **Vị trí:** `ui/screen/<tên_màn_hình>/`
 
 **Quy tắc:**
