@@ -103,26 +103,7 @@ navController.navigate(Routes.Home.route) {
  
 ---
 
-## 4. Khi gọi API (Retrofit)
-
-**Vị trí:** `data/remote/`
-
-**Quy tắc:**
-- Mỗi nhóm API tạo **1 interface** trong `data/remote/`, ví dụ `AuthApi.kt`, `TaskApi.kt`.
-- Retrofit instance tạo **1 lần duy nhất** trong file `data/remote/RetrofitClient.kt` (singleton).
-- **Không** gọi Retrofit trực tiếp trong Screen hay ViewModel. Phải đi qua Repository.
-
-```kotlin
-// data/remote/AuthApi.kt
-interface AuthApi {
-    @POST("auth/login")
-    suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
-}
-```
- 
----
-
-## 5. Khi truy vấn Database (Room)
+## 4. Khi truy vấn Database (Room)
 
 **Vị trí:** `data/local/`
 
@@ -144,12 +125,12 @@ data/
  
 ---
 
-## 6. Khi viết Repository
+## 5. Khi viết Repository
 
 **Vị trí:** `data/repository/`
 
 **Quy tắc:**
-- Repository là **cầu nối** giữa ViewModel và data source (API + Database).
+- Repository là **cầu nối** giữa ViewModel và data source (Database).
 - Mỗi tính năng chính tạo **1 Repository**, ví dụ `AuthRepository.kt`, `TaskRepository.kt`.
 - ViewModel **chỉ gọi Repository**, không import trực tiếp API hay DAO.
 
@@ -177,7 +158,7 @@ class TaskRepository(
  
 ---
 
-## 7. Component dùng chung
+## 6. Component dùng chung
 
 **Vị trí:** `ui/components/`
 
@@ -188,7 +169,7 @@ class TaskRepository(
 
 ---
 
-## 8. Quy tắc đặt tên
+## 7. Quy tắc đặt tên
 
 | Loại | Quy tắc | Ví dụ |
 |------|---------|-------|
@@ -201,7 +182,7 @@ class TaskRepository(
  
 ---
 
-## 9. Quy tắc chung
+## 8. Quy tắc chung
 
 - **Không commit code lỗi**. Build thành công rồi mới push.
 - **Không sửa file của người khác** khi chưa trao đổi. Nếu cần sửa file chung (`AppNavigation.kt`, `AppDatabase.kt`), báo trong nhóm trước.

@@ -104,7 +104,7 @@ com/example/btl/
 ### Luồng hoạt động
 
 ```
-Screen  →  ViewModel  →  Repository  →  API / Local DB
+Screen  →  ViewModel  →  Repository  →  DAO (Room) → SQLite
   ↑______________________________________________|
                (trả kết quả về, cập nhật UI)
 ```
