@@ -78,8 +78,7 @@ git clone <repo-url>
 com/example/btl/
 │
 ├── data/
-│   ├── model/                      # Data class — ánh xạ dữ liệu từ API trả về
-│   ├── remote/                     # Gọi API: ApiService, RetrofitClient
+│   ├── model/                      # Data class 
 │   └── local/                      # Lưu trữ cục bộ: Room DAO (nếu có)
 │
 ├── repository/                     # Trung gian giữa ViewModel và data source
