@@ -69,18 +69,10 @@ dependencies {
     // ==================== NAVIGATION =============================
     implementation(libs.androidx.navigation.compose)
 
-    // ==================== RETROFIT + OKHTTP + GSON ===============
-    implementation(libs.retrofit.core)
-    implementation(libs.retrofit.converter.gson)
-    implementation(libs.okhttp.core)
-    implementation(libs.okhttp.logging)
-    implementation(libs.gson)
 
     // ==================== FIREBASE ===============================
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore)
-    implementation(libs.firebase.messaging)
+//    implementation(platform(libs.firebase.bom))
+//    implementation(libs.firebase.messaging)
 
     // ==================== ROOM (Database) ========================
     implementation(libs.room.runtime)
@@ -101,6 +93,8 @@ dependencies {
 
     // ==================== DATASTORE ==============================
     implementation(libs.androidx.datastore.preferences)
+
+    implementation("androidx.compose.material:material-icons-extended")
 
     // ==================== TESTING (giữ nguyên) ===================
     testImplementation(libs.junit)

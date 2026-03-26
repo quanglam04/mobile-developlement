@@ -1,44 +1,67 @@
 package com.example.btl.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.btl.ui.screen.home.HomeScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.btl.ui.screen.main.MainScreen
 import com.example.btl.ui.screen.splash.SplashScreen
 
 /**
- * NavHost chính của app.
- * Khi có màn hình mới:
- *   1. Thêm route vào Routes.kt
- *   2. Thêm composable(...) ở đây
+ * File: ui/navigation/AppNavigation.kt
+ *
+ * NavHost cấp cao nhất (root) của toàn app.
+ *
+ * Luồng điều hướng:
+ *   Splash → Main (chứa BottomNav với Home, Calendar, Statistics, Settings)
+ *                ↘ AddTask      (không có BottomNav)
+ *                ↘ TaskDetail   (không có BottomNav)
+ *
+ * Lý do tách 2 tầng NavHost:
+ * - Tầng 1 (AppNavigation): Splash → Main → các màn con (AddTask, TaskDetail...)
+ * - Tầng 2 (trong MainScreen): Home, Calendar, Statistics, Settings
+ * → Khi ở tầng 2, BottomNav luôn hiện.
+ * → Khi navigate sang tầng 1 (AddTask, TaskDetail), BottomNav tự động ẩn.
  */
 @Composable
-fun AppNavigation(navController: NavHostController) {
+fun AppNavigation() {
+    val rootNavController = rememberNavController()
+
     NavHost(
-        navController = navController,
-        startDestination = Routes.Splash.route
+        navController = rootNavController,
+        startDestination = Routes.SPLASH
     ) {
-        // Màn Splash
-        composable(Routes.Splash.route) {
+        // Splash
+        composable(Routes.SPLASH) {
             SplashScreen(
-                onNavigateToHome = {
-                    navController.navigate(Routes.Home.route) {
-                        // Xóa Splash khỏi back stack để bấm Back không quay lại Splash
-                        popUpTo(Routes.Splash.route) { inclusive = true }
+                onSplashFinished = {
+                    rootNavController.navigate(Routes.MAIN) {
+                        popUpTo(Routes.SPLASH) { inclusive = true }
                     }
                 }
             )
         }
 
-        // Màn Home
-        composable(Routes.Home.route) {
-            HomeScreen()
+        // Main (chứa BottomNav)
+        composable(Routes.MAIN) {
+            MainScreen(
+                onNavigateToAddTask = {
+                    rootNavController.navigate(Routes.ADD_TASK)
+                },
+                onNavigateToTaskDetail = { taskId ->
+                    rootNavController.navigate(Routes.taskDetail(taskId))
+                }
+            )
         }
 
-        //  Thêm màn hình mới ở đây
-        // composable(Routes.Login.route) {
-        //     LoginScreen(navController)
-        // }
+        //  Các màn con — KHÔNG có BottomNav
+        composable(Routes.ADD_TASK) {
+            // TODO: AddTaskScreen()
+        }
+
+        composable(Routes.TASK_DETAIL) {
+            // val taskId = it.arguments?.getString("taskId")
+            // TODO: TaskDetailScreen(taskId)
+        }
     }
 }

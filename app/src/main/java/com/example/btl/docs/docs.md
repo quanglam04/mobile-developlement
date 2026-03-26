@@ -4,6 +4,33 @@
  
 ---
 
+## 0. Cấu trúc folder
+```
+com/example/btl/
+│
+├── data/
+│   ├── model/                      # Data class 
+│   └── local/                      # Lưu trữ cục bộ: Room DAO (nếu có)
+│
+├── repository/                     # Trung gian giữa ViewModel và data source
+│                                   # Mọi logic gọi API đều đi qua đây
+│
+├── ui/
+│   ├── nagivation/                 # Quản lý route toàn app
+│   │   ├── Routes.kt               # Khai báo tên tất cả route
+│   │   └── AppNavigation.kt        # NavHost — điều hướng giữa các màn hình
+│   ├── theme/                      # Màu sắc, font chữ, theme toàn app
+│   ├── components/                 # Các Composable dùng chung nhiều màn hình
+│   └── screen/                     # Mỗi màn hình gồm 2 file:
+│       ├── home/
+│       │   ├── HomeScreen.kt       # Giao diện (chỉ hiển thị)
+│       │   └── HomeViewModel.kt    # Xử lý logic, giữ state
+│       └── splash/
+│           └── SplashScreen.kt
+│
+└── utils/                          # Hàm tiện ích dùng chung (extension, helper...)
+```
+
 ## 1. Khi tạo màn hình mới
 
 **Tạo nhánh**: `screen/<tên-màn>`

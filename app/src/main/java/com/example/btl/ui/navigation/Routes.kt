@@ -1,15 +1,28 @@
 package com.example.btl.ui.navigation
 
 /**
- * Khai báo tất cả route ở đây.
- * Khi có màn hình mới, thêm 1 dòng object vào là xong.
+ * File: ui/navigation/Routes.kt
+ *
+ * Khai báo tên tất cả route trong app.
+ * Khi thêm màn hình mới, chỉ cần thêm const ở đây.
  */
-sealed class Routes(val route: String) {
-    object Splash : Routes("splash")
-    object Home : Routes("home")
+object Routes {
+    // Splash
+    const val SPLASH = "splash"
 
-    // Thêm route mới ở đây
-    // object Login : Routes("login")
-    // object Profile : Routes("profile")
-    // object Settings : Routes("settings")
+    // Main (chứa BottomNavigation)
+    const val MAIN = "main"
+
+    // Các tab trong BottomNavigation
+    const val HOME = "home"
+    const val CALENDAR = "calendar"
+    const val STATISTICS = "statistics"
+    const val UTILITIES = "utilities"
+    const val SETTINGS = "settings"
+
+    // Các màn hình con (không hiện BottomNav)
+    const val ADD_TASK = "add_task"
+    const val TASK_DETAIL = "task_detail/{taskId}"
+
+    fun taskDetail(taskId: String) = "task_detail/$taskId"
 }

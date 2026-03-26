@@ -26,8 +26,6 @@
 | Retrofit | 2.11.0 | Gọi REST API |
 | OkHttp | 4.12.0 | HTTP client, logging request/response |
 | Gson | 2.11.0 | Parse JSON từ API |
-| Firebase Auth | BOM 33.9.0 | Đăng ký, đăng nhập, lấy lại mật khẩu |
-| Firebase Firestore | BOM 33.9.0 | Cloud sync, sao lưu dữ liệu |
 | Firebase Messaging | BOM 33.9.0 | Thông báo push |
 | Room | 2.6.1 | Lưu trữ task offline (SQLite) |
 | Kotlin Coroutines | 1.10.1 | Xử lý bất đồng bộ |
